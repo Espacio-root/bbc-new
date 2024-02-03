@@ -30,18 +30,21 @@ This project is a web application that combines a hospital locator and a chatbot
   ```bash
   Copy code
   cd frontend
+```
 
 2. Install dependencies:
 
   ```bash
   Copy code
   npm install
+  ```
 
 3. Run the React app:
 
   ```bash
   Copy code
   npm start
+  ```
 
 The React app will start, and you can access it at http://localhost:3000/.
 
@@ -55,16 +58,19 @@ The React app will start, and you can access it at http://localhost:3000/.
    python -m venv venv
    # On Windows: venv\Scripts\activate
    # On macOS/Linux: source venv/bin/activate
+   ```
 
 3. Install the required packages:
 
   ```bash
   pip install -r requirements.txt
+```
 
 4. Run the Flask app:
 
   ```bash
   python app.py
+```
 
 The Flask app will start, and you can access it at http://127.0.0.1:5000/nearest_hospitals.
 
