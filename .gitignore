@@ -32,3 +32,9 @@ frontend/.vercel
 # typescript
 frontend/*.tsbuildinfo
 frontend/next-env.d.ts
+
+# venv
+backend/venv/
+
+#__pycache__
+backend/__pycache__

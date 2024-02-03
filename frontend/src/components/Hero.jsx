@@ -1,29 +1,24 @@
-'use client'
-
+'use client';
 import React from 'react'
-import { Arrow } from './Svg'
-import { useRouter } from 'next/navigation'
+import {useRouter} from 'next/navigation'
 
 function Hero() {
 
-  const { push } = useRouter()
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    const query = e.target[0].value
-      // window.open(`https://help.abstract.com/hc/en-us/search?utf8=%E2%9C%93&query=${query}`, '_blank')
-    push(`/chat?query=${query}`)
-
-    e.target[0].value = ''
-  }
+  const router = useRouter()
 
   return (
-      <div className='h-[397px] bg-[#dadbf1] flex flex-col justify-center items-center'>
-        <h1 className='text-7xl font-semibold mb-8'>How can we help?</h1>
-        <form className='relative' onSubmit={handleSubmit}>
-            <input type='text' placeholder='Search' className='h-[66px] w-[720px] outline-none border-2 border-black placeholder:text-[22px] pl-5 pr-14 py-3 text-[19px] font-semibold rounded-md' />
-            <Arrow className='h-8 w-auto absolute top-1/2 right-5 -translate-y-1/2' />
-        </form>
+    <div className='h-[397px] bg-[#dadbf1] flex flex-row justify-evenly items-center px-12 mt-6'>
+      <div className='flex flex-col justify-center items-center gap-4'>
+        <button className='button bg-[#68bfd3] hover:bg-[#dadbf1] rounded-full px-16 inline-block' onClick={() => router.push('/tracker')}>
+          <p className='text-lg font-bold'>Locate Nearest Hospital</p>
+          <p className='text-sm text-gray-700'>find the closest hospital in your vicinity</p>
+        </button>
+        <button className='button bg-[#68bfd3] hover:bg-[#dadbf1] rounded-full px-16 inline-block' onClick={() => router.push('/chat')}>
+          <p className='text-xl font-bold'>Chat With Bot</p>
+          <p className='text-sm text-gray-700'>get quality advice from the finest chatbot</p>
+        </button>
+      </div>
+      <img src='/hero.png' height='full' width='auto' />
     </div>
   )
 }

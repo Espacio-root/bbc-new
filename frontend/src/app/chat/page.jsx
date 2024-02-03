@@ -1,25 +1,26 @@
 'use client';
 import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
+import { Arrow } from '../../components/Svg'
 import { OpenAIStream, StreamReader } from '../../lib/openai-stream'; // Update the path to match the location of your file
 
 const Page = ({}) => {
     const searchParams = useSearchParams()
-    const query = searchParams.get('query')
+    const [prompt, setPrompt] = useState('')
     const [message, setMessage] = useState('')
+    const [loading, setLoading] = useState(false)
     
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const decoder = new TextDecoder("utf-8");
-    //             await StreamReader(stream, decoder, (newText) => setMessage((prev) => prev + newText))
-    //         } catch (error) {
-    //           console.error('Error fetching data:', error);
-    //         }
-    //       };
-    //     fetchData()
-    // }, [])
-    useEffect(() => {
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        setLoading(true)
+        setMessage('')
+        setPrompt('')
+        generateResponse(prompt)
+        setLoading(false)
+    }
+
+    const generateResponse = (query) => {
+        console.log('query', query)
         const payload = {
           model: 'gpt-3.5-turbo',
           messages: [
@@ -37,7 +38,6 @@ const Page = ({}) => {
         };
     
         // Call OpenAIStream
-        console.log('env_key', process.env.OPENAI_API_KEY)
         fetch('https://api.openai.com/v1/chat/completions', {
             headers: {
                 "Content-Type": "application/json",
@@ -55,17 +55,25 @@ const Page = ({}) => {
             // Handle the received text as needed, such as updating state or displaying in UI
             });
         })
-    
-        // Cleanup function if needed
-        return () => {
-          // Cleanup code here (e.g., abort controller cleanup)
-        };
-      }, []); // Empty dependency array to run only once
+    } 
+
   return (
-    <div className='min-h-[400px] mx-12 my-12 shadow-md bg-slate-200'>
-        {message.split('- ').map((e) => (
-            <p>-{e}</p>
-        ))}
+    <div className='flex flex-col gap-4 mx-12 my-12'>
+        <div className='min-h-[400px] shadow-md bg-slate-200'>
+            {message.split('- ').map((e) => (
+                <p>-{e}</p>
+            ))}
+        </div>
+        <form className='w-full relative' onSubmit={handleSubmit}>
+            <input 
+                type='text' 
+                value={prompt}
+                placeholder='Enter your query...' 
+                onChange={(e) => (setPrompt(e.target.value))}
+                disabled={loading}
+                className={`h-[66px] w-full outline-none border-2 border-black placeholder:text-[22px] pl-5 pr-14 py-3 text-[19px] font-semibold rounded-md ${loading && 'opacity-5 cursor-not-allowed'}`} />
+            <Arrow className='h-8 w-auto absolute top-1/2 right-5 -translate-y-1/2' onClick={handleSubmit}/>
+        </form>
     </div>
 )};
 

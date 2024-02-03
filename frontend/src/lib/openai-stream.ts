@@ -18,7 +18,6 @@ export interface OpenAIStreamPayload {
 export function OpenAIStream(payload: OpenAIStreamPayload) {
     let controller = new AbortController();
     const signal = controller.signal;
-    console.log(process.env.OPENAI_API_KEY)
 
     try {
         fetch('https://api.openai.com/v1/chat/completions', {
@@ -29,7 +28,6 @@ export function OpenAIStream(payload: OpenAIStreamPayload) {
             method: 'POST',
             body: JSON.stringify(payload),
         }).then(data => {
-            console.log(data)
             return data.body
         })
 
@@ -41,14 +39,12 @@ export function OpenAIStream(payload: OpenAIStreamPayload) {
 
 export async function StreamReader(stream: any, decoder: TextDecoder, callBackFn: (newText: string) => void) {
     const reader = stream.getReader();
-    console.log('reader', reader)
     let done = false;
 
     while (!done) {
         const chunk = await reader.read();
         done = chunk.done ?? true;
         const value = chunk.value ?? new Uint8Array();
-        console.log('hi')
 
         if (done) {
             break;

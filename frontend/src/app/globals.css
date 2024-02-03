@@ -24,7 +24,7 @@
     @apply bg-white bg-opacity-10 button-text border-2 rounded-lg inline-flex px-8 py-3 items-center justify-center;
   }
   .button {
-    @apply bg-[#dadbf1] hover:bg-white hover:text-black transition-colors duration-200 button-text rounded-lg inline-flex px-8 py-3 items-center justify-center;
+    @apply  hover:text-black transition-colors duration-200 button-text rounded-lg inline-flex px-8 py-3 items-center justify-center border-2 border-black;
   }
 }
 /* bg-[#4C5FD5] */

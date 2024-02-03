@@ -1,7 +1,10 @@
 from flask import Flask, jsonify
+from flask_cors import CORS
 from main import *
 
 app = Flask(__name__)
+CORS(app)
+PORT = 8080
 
 # API route to get nearest hospitals
 @app.route('/nearest_hospitals', methods=['GET'])
@@ -35,4 +38,4 @@ def get_nearest_hospitals():
 
 if __name__ == '__main__':
     # Run the Flask app in debug mode
-    app.run(debug=True)
+    app.run(debug=True, port=PORT)
