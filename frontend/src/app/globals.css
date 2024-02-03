@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@layer components {
+  .button-text {
+    @apply text-black text-center text-2xl font-bold tracking-wide cursor-pointer;
+  }
+  .button-ghost {
+    @apply bg-white bg-opacity-10 button-text border-2 rounded-lg inline-flex px-8 py-3 items-center justify-center;
+  }
+  .button {
+    @apply bg-[#dadbf1] hover:bg-white hover:text-black transition-colors duration-200 button-text rounded-lg inline-flex px-8 py-3 items-center justify-center;
+  }
+}
+/* bg-[#4C5FD5] */
