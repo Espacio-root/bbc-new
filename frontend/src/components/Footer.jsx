@@ -9,24 +9,12 @@ function Footer() {
     { title: 'Company', links: ['About Us', 'Careers', 'Legal'] }]
 
     return (
-        <div className='w-full bg-black text-white flex gap-5 px-24 py-12 justify-between mt-24'>
-            {data.map((item, index) => {
-                return (
-                    <div key={index} className='flex flex-col items-start'>
-                        <h1 className='text-3xl font-bold mb-4'>{item.title}</h1>
-                        {item.links.map((links, index) => {
-                            return (
-                                <p key={index} className='cursor-pointer hover:underline text-lg italic'>{links}</p>
-                            )
-                        })}
-                    </div>
-                )
-            })}
-            <div className='flex flex-col justify-between pt-8'>
+        <div className='w-full bg-black text-white flex gap-5 px-24 py-6 justify-between mt-24'>
+            <div className='flex flex-row justify-evenly items-center pt-8 w-full'>
 
                 <div className='flex flex-col items-start'>
                     <h1 className='text-2xl font-bold tracking-wide'>Contact Us</h1>
-                    <p className='text-lg font-bold tracking-wide font-semibold'>example@xyz.com</p>
+                    <p className='text-lg font-bold tracking-wide'>example@xyz.com</p>
                 </div>
 
                 <div className='flex flex-col items-start mt-12'>
@@ -35,11 +23,7 @@ function Footer() {
                         <p className='text-2xl font-bold pr-8'>MapMed</p>
                     </div>
                     <p>
-                        © Copyright 2024 <br />
-
-                        MapMed, Inc. <br />
-
-                        All rights reserved <br />
+                        MapMed, Hackathon. <br />
                     </p>
                 </div>
 
